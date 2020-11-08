@@ -74,13 +74,16 @@ class ReminderView extends ItemView {
   constructor(leaf: WorkspaceLeaf) {
     console.log("in view constructor");
     super(leaf);
-    this.update = this.update.bind(this);
   }
 
   private reminder: Reminder;
 
   async onOpen() {
-    this.reminder = new Reminder({ target: (this as any).contentEl });
+    const { vault } = this.app;
+    this.reminder = new Reminder({
+      target: (this as any).contentEl,
+      props: { vault },
+    });
   }
 
   getViewType() {
@@ -93,33 +96,5 @@ class ReminderView extends ItemView {
 
   getIcon() {
     return ICON_ID_REMINDER;
-  }
-
-  // load() {
-  //   this.update();
-  // }
-
-  async update() {
-    // console.log("in update");
-    // const container = this.leaf.createEl("div", {
-    //   cls: "calendarview__container",
-    // });
-    // const container = this.containerEl;
-    // const viewContent = container.children[1];
-    // viewContent.createEl("div", { cls: "unko", text: "unichi!" });
-    // const read = await this.app.vault.adapter.read("./_reminder.md");
-    // const splitted = read.split("\n");
-    // console.log(read);
-    // let list = new HTMLDivElement();
-    // console.log(list);
-    // for (let line of splitted) {
-    //   console.log(line);
-    //   let div = new HTMLDivElement();
-    //   div.appendText(line);
-    //   list.append(div);
-    //   // list.push(div);
-    // }
-    // console.log(list);
-    // viewContent.append(list);
   }
 }

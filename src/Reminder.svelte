@@ -1,12 +1,26 @@
 <script lang="ts">
-  const a = "aaaa";
+  import type { Vault } from "obsidian";
+  import { onMount, onDestroy } from "svelte";
+
+  export let vault: Vault;
+
+  let rawReminderFile: string;
+
+  onMount(async () => {
+    await readFile();
+  });
+
+  async function readFile() {
+    const read = await vault.adapter.read("./_reminder.md");
+    rawReminderFile = read;
+  }
 </script>
 
 <style>
   .container {
     overflow-y: auto;
-    padding: 0 16px;
+    padding: 0 10px;
   }
 </style>
 
-<div id="reminder-container" class="container">aaaaaa</div>
+<div id="reminder-container" class="container">{rawReminderFile}</div>
