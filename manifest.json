@@ -1,0 +1,9 @@
+{
+  "id": "obsidian-reminder",
+  "name": "reminder",
+  "version": "1.0.0",
+  "description": "This is a reminder.",
+  "author": "gumpen",
+  "authorUrl": "https://obsidian.md/about",
+  "isDesktopOnly": false
+}
